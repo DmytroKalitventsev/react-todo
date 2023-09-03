@@ -1,0 +1,30 @@
+.todo-task {
+	display: flex;
+	justify-content: flex-start;
+	align-items: baseline;
+	gap: 5px;
+	cursor: pointer;
+	height: 100%;
+	width: 100%;
+
+	&__check {
+		cursor: pointer;
+	}
+
+	&__count {
+	}
+
+	&__changing {
+		height: 100%;
+		width: 100%;
+		background-color: transparent;
+		color: #e3e3e3;
+		font-size: 16px;
+		background-color: #131314;
+		border-radius: 10px;
+		padding: 0px 10px;
+	}
+
+	&__text {
+	}
+}

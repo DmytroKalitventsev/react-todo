@@ -1,0 +1,26 @@
+.todo-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 10px;
+	gap: 10px;
+	transition: background-color 0.3s ease 0s;
+	border-radius: 10px;
+
+	&:hover {
+		background-color: #222327;
+	}
+
+	&_complete {
+		.todo-task__count,
+		.todo-task__text {
+			text-decoration: line-through;
+			font-style: italic;
+			color: #8f8f8f;
+		}
+	}
+
+	&_changing {
+		background-color: #222327;
+	}
+}
