@@ -1,13 +1,17 @@
 import './../styles/components/todoLists.scss';
+import TodoCompleted from './TodoCompleted';
 import TodoList from './TodoList';
 import TodosEmpty from './TodosEmpty';
 
 const TodoLists = ({ todos, ...props }) => {
-	const getTodos = (bool) => {
+	const getTypeTodos = (bool) => {
 		return bool
 			? todos.filter(todo => !todo.completed)
 			: todos.filter(todo => todo.completed)
 	}
+
+	const notCompletedTodos = getTypeTodos(true);
+	const completedTodos = getTypeTodos(false);
 
 	return (
 		<div className='todo-lists'>
@@ -18,10 +22,10 @@ const TodoLists = ({ todos, ...props }) => {
 					:
 					<>
 						{
-							getTodos(true).length
+							notCompletedTodos.length
 								?
 								<TodoList
-									todos={getTodos(true)}
+									todos={notCompletedTodos}
 
 									{...props}
 								/>
@@ -29,12 +33,11 @@ const TodoLists = ({ todos, ...props }) => {
 								false
 						}
 
-
 						{
-							getTodos(false).length
+							completedTodos.length
 								?
-								<TodoList
-									todos={getTodos(false)}
+								<TodoCompleted
+									completedTodos={completedTodos}
 
 									{...props}
 								/>

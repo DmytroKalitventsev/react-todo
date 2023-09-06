@@ -4,23 +4,13 @@ import TodoLists from './components/TodoLists';
 import './styles/common.scss'
 
 const App = () => {
-	const [todos, setTodos] = useState([
-		{
-			id: 1, title: 'Hello', completed: true, changing: false
-		},
-		{
-			id: 2, title: 'Hello', completed: false, changing: false
-		},
-		// {
-		// 	id: 3, title: 'Hello', completed: false, changing: false
-		// },
-	]);
+	const [todos, setTodos] = useState([]);
 
-	// useEffect(() => {
-	// 	fetch('https://jsonplaceholder.typicode.com/todos')
-	// 		.then(response => response.json())
-	// 		.then(json => setTodos(json.filter(todo => todo.id <= 10)));
-	// }, []);
+	useEffect(() => {
+		fetch('https://jsonplaceholder.typicode.com/todos')
+			.then(response => response.json())
+			.then(json => setTodos(json.filter(todo => todo.id <= 10)));
+	}, []);
 
 	const toggleCompleteTodo = (id) => {
 		setTodos(
