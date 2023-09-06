@@ -4,8 +4,8 @@ import TodoAction from './TodoAction';
 import './../styles/components/todoItem.scss';
 
 const TodoItem = ({ dataTodo, index, toggleCompleteTodo, deleteTodo, changeTodo }) => {
-	const { text, completed, changing } = dataTodo;
-	const [value, setValue] = useState(text);
+	const { title, completed, changing } = dataTodo;
+	const [value, setValue] = useState(title);
 
 	return (
 		<li className={`todo-item ${completed ? 'todo-item_complete' : ''} ${changing ? 'todo-item_changing' : ''}`}>

@@ -18,6 +18,7 @@ const TodoCreator = ({ addTodo }) => {
 				className="todo-creator__text"
 				type="text"
 				placeholder='add new task here...'
+				name='create'
 			/>
 
 			<button onClick={addDataTodo} className="todo-creator__create">

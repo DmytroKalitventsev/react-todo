@@ -1,0 +1,21 @@
+.todos-empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+	height: 100%;
+	text-align: center;
+
+	i {
+		font-size: 100px;
+	}
+
+	&__title {
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	&__descr {
+	}
+}
