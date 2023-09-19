@@ -1,50 +1,41 @@
 import './../styles/components/todoLists.scss';
+import { useContext } from 'react';
 import TodoCompleted from './TodoCompleted';
 import TodoList from './TodoList';
 import TodosEmpty from './TodosEmpty';
+import ToolsForTodos from '../context/ToolsForTodos';
 
-const TodoLists = ({ todos, ...props }) => {
-	const getTypeTodos = (bool) => {
-		return bool
-			? todos.filter(todo => !todo.completed)
-			: todos.filter(todo => todo.completed)
-	}
+const TodoLists = () => {
+	const { dataTodos } = useContext(ToolsForTodos);
 
-	const notCompletedTodos = getTypeTodos(true);
-	const completedTodos = getTypeTodos(false);
+	const notCompletedTodos = dataTodos.filter(todo => !todo.completed);
+	const completedTodos = dataTodos.filter(todo => todo.completed);
 
 	return (
-		<div className='todo-lists'>
+		<div
+			className='todo-lists'
+			style={{
+				justifyContent: notCompletedTodos.length ? 'space-between' : 'flex-end',
+			}}
+		>
 			{
-				!todos.length
+				dataTodos.length
 					?
-					<TodosEmpty />
-					:
 					<>
 						{
 							notCompletedTodos.length
-								?
-								<TodoList
-									todos={notCompletedTodos}
-
-									{...props}
-								/>
-								:
-								false
+								? <TodoList dataTodos={notCompletedTodos} />
+								: false
 						}
 
 						{
 							completedTodos.length
-								?
-								<TodoCompleted
-									completedTodos={completedTodos}
-
-									{...props}
-								/>
-								:
-								false
+								? <TodoCompleted completedTodos={completedTodos} />
+								: false
 						}
 					</>
+					:
+					<TodosEmpty />
 			}
 		</div>
 	);

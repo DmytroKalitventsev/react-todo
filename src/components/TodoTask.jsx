@@ -1,6 +1,9 @@
 import './../styles/components/todoTask.scss';
+import { useContext } from 'react';
+import ToolsForTodos from '../context/ToolsForTodos';
 
-const TodoTask = ({ dataTodo, index, toggleCompleteTodo, value, setValue }) => {
+const TodoTask = ({ dataTodo, index, value, setValue }) => {
+	const {toggleCompleteTodo} = useContext(ToolsForTodos);
 	const { id, title, completed, changing } = dataTodo;
 
 	return (

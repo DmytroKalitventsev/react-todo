@@ -1,6 +1,9 @@
 import './../styles/components/todoAction.scss';
+import { useContext } from 'react';
+import ToolsForTodos from '../context/ToolsForTodos';
 
-const TodoAction = ({ dataTodo, deleteTodo, changeTodo, value }) => {
+const TodoAction = ({ dataTodo, value }) => {
+	const { deleteTodo, changeTodo } = useContext(ToolsForTodos);
 	const { id, changing } = dataTodo;
 
 	return (

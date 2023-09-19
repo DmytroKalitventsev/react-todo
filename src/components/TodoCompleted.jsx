@@ -1,37 +1,29 @@
-import { useState } from 'react';
 import './../styles/components/todoCompleted.scss';
+import { useState } from 'react';
 import TodoList from './TodoList';
 
-const TodoCompleted = ({ completedTodos, ...props }) => {
-	const [showingTodos, setShowingTodos] = useState(s => !s);
+const TodoCompleted = ({ completedTodos }) => {
+	const [activeCompetedTodos, setActiveCompetedTodos] = useState(false);
 
 	return (
 		<div className='todo-completed'>
 			<div
 				className="todo-completed__title"
-				onClick={() => setShowingTodos(!showingTodos)}
+				onClick={() => setActiveCompetedTodos(prev => !prev)}
 			>
 				{
-					!showingTodos
-						?
-						<i className="fa-solid fa-caret-down"></i>
-						:
-						<i className="fa-solid fa-caret-right"></i>
+					activeCompetedTodos
+						? <i className="fa-solid fa-caret-down"></i>
+						: <i className="fa-solid fa-caret-right"></i>
 				}
 
 				<span>Completed ({completedTodos.length})</span>
 			</div>
 
 			{
-				!showingTodos
-					?
-					<TodoList
-						todos={completedTodos}
-
-						{...props}
-					/>
-					:
-					false
+				activeCompetedTodos
+					? <TodoList dataTodos={completedTodos} />
+					: false
 			}
 
 		</div>

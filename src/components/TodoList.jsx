@@ -1,17 +1,15 @@
-import TodoItem from './TodoItem';
 import './../styles/components/todoList.scss';
+import TodoItem from './TodoItem';
 
-const TodoList = ({ todos, ...props }) => {
+const TodoList = ({ dataTodos }) => {
 	return (
 		<ul className="todo-list">
 
-			{todos.map((todo, index) =>
+			{dataTodos.map((dataTodo, index) =>
 				<TodoItem
-					key={todo.id}
-					dataTodo={todo}
+					key={dataTodo.id}
+					dataTodo={dataTodo}
 					index={index + 1}
-
-					{...props}
 				/>
 			)}
 

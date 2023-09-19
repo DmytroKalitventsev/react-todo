@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import './../styles/components/todoCreator.scss';
+import { useState } from 'react';
 
 const TodoCreator = ({ addTodo }) => {
 	const [value, setValue] = useState('');
@@ -13,7 +13,7 @@ const TodoCreator = ({ addTodo }) => {
 		<div className="todo-creator">
 
 			<input
-				onChange={(e) => setValue(e.target.value)}
+				onChange={e => setValue(e.target.value)}
 				value={value}
 				className="todo-creator__text"
 				type="text"
