@@ -1,9 +1,9 @@
 import './../styles/components/todoLists.scss';
 import { useContext } from 'react';
-import TodoCompleted from './TodoCompleted';
-import TodoList from './TodoList';
-import TodosEmpty from './TodosEmpty';
 import ToolsForTodos from '../context/ToolsForTodos';
+import TodoList from './TodoList';
+import TodoCompleted from './TodoCompleted';
+import TodosEmpty from './TodosEmpty';
 
 const TodoLists = () => {
 	const { dataTodos } = useContext(ToolsForTodos);

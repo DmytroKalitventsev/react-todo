@@ -1,8 +1,9 @@
 import './styles/common.scss';
 import { useState } from 'react';
+import ToolsForTodos from './context/ToolsForTodos';
 import TodoCreator from './components/TodoCreator';
 import TodoLists from './components/TodoLists';
-import ToolsForTodos from './context/ToolsForTodos';
+import TodoHeader from './components/TodoHeader';
 
 const App = () => {
 	const [dataTodos, setDataTodos] = useState([]);
@@ -43,10 +44,11 @@ const App = () => {
 	return (
 		<div className="container">
 			<div className="todo-app">
-				<h1 className='todo-app__title'>Tasks</h1>
+
+				<TodoHeader />
 
 				<ToolsForTodos.Provider value={toolsForTodos}>
-					<TodoLists/>
+					<TodoLists />
 				</ToolsForTodos.Provider>
 
 				<TodoCreator addTodo={addTodo} />
