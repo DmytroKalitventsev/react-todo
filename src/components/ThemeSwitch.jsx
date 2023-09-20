@@ -1,14 +1,18 @@
+import { useContext } from 'react';
+import SwitchTheme from '../context/SwitchTheme';
 import '../styles/components/themeSwitch.scss';
 
-const switchTheme = () => {
-
-}
-
 const ThemeSwitch = () => {
+	const { switchTheme, theme } = useContext(SwitchTheme);
+
+
 	return (
 		<div onClick={switchTheme} className='theme-switch'>
-			<i className="fa-regular fa-lightbulb"></i>
-			{/* <i className="fa-solid fa-lightbulb" style={{color: '#ffff00'}}></i> */}
+			{
+				theme === 'dark'
+					? <i className="fa-regular fa-lightbulb"></i>
+					: <i className="fa-solid fa-lightbulb"></i>
+			}
 		</div>
 	);
 };

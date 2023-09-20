@@ -8,7 +8,7 @@
 	border-radius: 10px;
 
 	&:hover {
-		background-color: #222327;
+		background-color: var(--hover-elem);
 	}
 
 	&_complete {
@@ -16,11 +16,11 @@
 		.todo-task__text {
 			text-decoration: line-through;
 			font-style: italic;
-			color: #8f8f8f;
+			color: var(--completed-todo);
 		}
 	}
 
 	&_changing {
-		background-color: #222327;
+		background-color: var(--hover-elem);
 	}
 }

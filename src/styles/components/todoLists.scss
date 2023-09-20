@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #131314;
+	background-color: var(--bg-todo-secondary);
 	overflow-y: scroll;
 	height: 100%;
 
@@ -16,7 +16,7 @@
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background: #e3e3e3;
+		background: var(--scroll);
 		border-radius: 10px;
 	}
 
