@@ -4,6 +4,7 @@ import ToolsForTodos from '../context/ToolsForTodos';
 import TodoList from './TodoList';
 import TodoCompleted from './TodoCompleted';
 import TodosEmpty from './TodosEmpty';
+import ShowBlock from '../HOC/ShowBlock';
 
 const TodoLists = () => {
 	const { dataTodos } = useContext(ToolsForTodos);
@@ -18,21 +19,18 @@ const TodoLists = () => {
 				justifyContent: notCompletedTodos.length ? 'space-between' : 'flex-end',
 			}}
 		>
+
 			{
 				dataTodos.length
 					?
 					<>
-						{
-							notCompletedTodos.length
-								? <TodoList dataTodos={notCompletedTodos} />
-								: false
-						}
-
-						{
-							completedTodos.length
-								? <TodoCompleted completedTodos={completedTodos} />
-								: false
-						}
+						<ShowBlock data={notCompletedTodos.length}>
+							<TodoList dataTodos={notCompletedTodos} />
+						</ShowBlock>
+						
+						<ShowBlock data={completedTodos.length}>
+							<TodoCompleted completedTodos={completedTodos} />
+						</ShowBlock>
 					</>
 					:
 					<TodosEmpty />

@@ -1,6 +1,7 @@
 import './../styles/components/todoCompleted.scss';
 import { useState } from 'react';
 import TodoList from './TodoList';
+import ShowBlock from '../HOC/ShowBlock';
 
 const TodoCompleted = ({ completedTodos }) => {
 	const [activeCompetedTodos, setActiveCompetedTodos] = useState(false);
@@ -20,11 +21,9 @@ const TodoCompleted = ({ completedTodos }) => {
 				<span>Completed ({completedTodos.length})</span>
 			</div>
 
-			{
-				activeCompetedTodos
-					? <TodoList dataTodos={completedTodos} />
-					: false
-			}
+			<ShowBlock data={activeCompetedTodos}>
+				<TodoList dataTodos={completedTodos} />
+			</ShowBlock>
 
 		</div>
 	);

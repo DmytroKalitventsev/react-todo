@@ -21,7 +21,7 @@ const App = () => {
 	useEffect(() => {
 		if (getLocalDataTheme()) setTheme(getLocalDataTheme());
 		saveLocalDataTheme();
-	}, []);
+	}, []); 
 
 	useEffect(() => {
 		saveLocalDataTodos();
