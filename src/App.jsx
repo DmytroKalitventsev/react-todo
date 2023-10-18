@@ -7,99 +7,108 @@ import TodoLists from './components/TodoLists';
 import TodoHeader from './components/TodoHeader';
 
 const App = () => {
-	const [dataTodos, setDataTodos] = useState([]);
-	const [theme, setTheme] = useState('dark');
-	const getLocalDataTodos = () => JSON.parse(localStorage.getItem('dataTodos'));
-	const getLocalDataTheme = () => JSON.parse(localStorage.getItem('theme'));
-	const saveLocalDataTodos = () => localStorage.setItem('dataTodos', JSON.stringify(dataTodos));
-	const saveLocalDataTheme = () => localStorage.setItem('theme', JSON.stringify(theme));
+  const [dataTodos, setDataTodos] = useState([]);
+  const [theme, setTheme] = useState('dark');
+  const getLocalDataTodos = () => JSON.parse(localStorage.getItem('dataTodos'));
+  const getLocalDataTheme = () => JSON.parse(localStorage.getItem('theme'));
+  const saveLocalDataTodos = () => localStorage.setItem('dataTodos', JSON.stringify(dataTodos));
+  const saveLocalDataTheme = () => localStorage.setItem('theme', JSON.stringify(theme));
 
-	useEffect(() => {
-		if (getLocalDataTodos()) setDataTodos(getLocalDataTodos());
-	}, []);
+  useEffect(() => {
+    if (getLocalDataTodos()) setDataTodos(getLocalDataTodos());
+  }, []);
 
-	useEffect(() => {
-		if (getLocalDataTheme()) setTheme(getLocalDataTheme());
-		saveLocalDataTheme();
-	}, []); 
+  useEffect(() => {
+    if (getLocalDataTheme()) setTheme(getLocalDataTheme());
+    saveLocalDataTheme();
+  }, []);
 
-	useEffect(() => {
-		saveLocalDataTodos();
-	}, [dataTodos]);
+  useEffect(() => {
+    saveLocalDataTodos();
+  }, [dataTodos]);
 
-	useEffect(() => {
-		saveLocalDataTheme();
-	}, [theme]);
+  useEffect(() => {
+    saveLocalDataTheme();
+  }, [theme]);
 
-	const switchTheme = () => {
-		setTheme(theme === 'dark' ? 'light' : 'dark');
-	}
+  const switchTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  }
 
-	const addTodo = title => {
-		const id = dataTodos.length ? dataTodos[dataTodos.length - 1].id + 1 : 1;
+  const addTodo = title => {
+    const id = dataTodos.length ? dataTodos[dataTodos.length - 1].id + 1 : 1;
 
-		setDataTodos(
-			[...dataTodos, { id, title, completed: false, changing: false }]
-		)
+    setDataTodos(
+      [...dataTodos, { id, title, completed: false, changing: false }]
+    )
 
-		saveLocalDataTodos();
-	}
+    saveLocalDataTodos();
+  }
 
-	const deleteTodo = id => {
-		setDataTodos(
-			dataTodos.filter(todo => (id !== todo.id) && { ...todo })
-		)
+  const deleteTodo = id => {
+    setDataTodos(
+      dataTodos.filter(todo => (id !== todo.id) && { ...todo })
+    )
 
-		saveLocalDataTodos();
-	}
+    saveLocalDataTodos();
+  }
 
-	const changeTodo = (id, title) => {
-		setDataTodos(
-			dataTodos.map(todo => (id === todo.id) ? { ...todo, title, changing: !todo.changing } : { ...todo, changing: false })
-		)
+  const changeTodo = (id, title) => {
+    setDataTodos(
+      dataTodos.map(todo => (id === todo.id) ? { ...todo, title, changing: !todo.changing } : { ...todo, changing: false })
+    )
 
-		saveLocalDataTodos();
-	}
+    saveLocalDataTodos();
+  }
 
-	const toggleCompleteTodo = (id) => {
-		setDataTodos(
-			dataTodos.map(todo => (id === todo.id) ? { ...todo, completed: !todo.completed } : todo)
-		)
+  const toggleCompleteTodo = (id) => {
+    setDataTodos(
+      dataTodos.map(todo => (id === todo.id) ? { ...todo, completed: !todo.completed } : todo)
+    )
 
-		saveLocalDataTodos();
-	}
+    saveLocalDataTodos();
+  }
 
-	const toolsForTodos = {
-		dataTodos,
-		deleteTodo,
-		changeTodo,
-		toggleCompleteTodo,
-	}
+  const deleteAllCompletedTodos = () => {
+    setDataTodos(
+      dataTodos.filter(todo => todo.completed === false)
+    )
 
-	const toolsForSwitchTheme = {
-		switchTheme,
-		theme,
-	}
+    saveLocalDataTodos();
+  }
 
-	return (
-		<div data-theme={theme} className='wrapper'>
-			<div className="container">
-				<div className="todo-app">
+  const toolsForTodos = {
+    dataTodos,
+    deleteTodo,
+    changeTodo,
+    toggleCompleteTodo,
+    deleteAllCompletedTodos,
+  }
 
-					<SwitchTheme.Provider value={toolsForSwitchTheme}>
-						<TodoHeader />
-					</SwitchTheme.Provider>
+  const toolsForSwitchTheme = {
+    switchTheme,
+    theme,
+  }
 
-					<ToolsForTodos.Provider value={toolsForTodos}>
-						<TodoLists />
-					</ToolsForTodos.Provider>
+  return (
+    <div data-theme={theme} className='wrapper'>
+      <div className="container">
+        <div className="todo-app">
 
-					<TodoCreator addTodo={addTodo} />
+          <SwitchTheme.Provider value={toolsForSwitchTheme}>
+            <TodoHeader />
+          </SwitchTheme.Provider>
 
-				</div>
-			</div>
-		</div>
-	);
+          <ToolsForTodos.Provider value={toolsForTodos}>
+            <TodoLists />
+          </ToolsForTodos.Provider>
+
+          <TodoCreator addTodo={addTodo} />
+
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;

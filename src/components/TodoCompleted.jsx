@@ -1,32 +1,45 @@
 import './../styles/components/todoCompleted.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import TodoList from './TodoList';
-import ShowBlock from '../HOC/ShowBlock';
+import RenderElement from '../HOC/RenderElement';
+import ToolsForTodos from '../context/ToolsForTodos';
 
 const TodoCompleted = ({ completedTodos }) => {
-	const [activeCompetedTodos, setActiveCompetedTodos] = useState(false);
+  const [activeCompetedTodos, setActiveCompetedTodos] = useState(false);
+  const { deleteAllCompletedTodos } = useContext(ToolsForTodos)
 
-	return (
-		<div className='todo-completed'>
-			<div
-				className="todo-completed__title"
-				onClick={() => setActiveCompetedTodos(prev => !prev)}
-			>
-				{
-					activeCompetedTodos
-						? <i className="fa-solid fa-caret-down"></i>
-						: <i className="fa-solid fa-caret-right"></i>
-				}
+  const clickBtnHandler = (e) => {
+    deleteAllCompletedTodos();
+    e.stopPropagation();
+  }
 
-				<span>Completed ({completedTodos.length})</span>
-			</div>
+  return (
+    <div className='todo-completed'>
+      <div
+        className="todo-completed__title"
+        onClick={() => setActiveCompetedTodos(prev => !prev)}
+      >
+        {
+          activeCompetedTodos
+            ? <i className="fa-solid fa-caret-down"></i>
+            : <i className="fa-solid fa-caret-right"></i>
+        }
 
-			<ShowBlock data={activeCompetedTodos}>
-				<TodoList dataTodos={completedTodos} />
-			</ShowBlock>
+        <span>Completed ({completedTodos.length})</span>
+        <button
+          className='todo-completed__clear'
+          onClick={clickBtnHandler}
+        >
+          <i className="fa-solid fa-delete-left"></i>
+        </button>
+      </div>
 
-		</div>
-	);
+      <RenderElement data={activeCompetedTodos}>
+        <TodoList dataTodos={completedTodos} />
+      </RenderElement>
+
+    </div>
+  );
 };
 
 export default TodoCompleted;

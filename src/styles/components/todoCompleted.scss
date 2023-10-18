@@ -1,23 +1,32 @@
 .todo-completed {
-	display: flex;
-	flex-direction: column;
-	border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
 
-	.todo-list {
-		flex-direction: column;
-		padding: 0px 20px 20px;
-	}
-}
+  .todo-list {
+    flex-direction: column;
+    padding: 0px 20px 20px;
+  }
 
-.todo-completed__title {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	padding: 20px 20px 20px 30px;
-	cursor: pointer;
-	transition: background-color 0.3s ease 0s;
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px 10px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
 
-	&:hover {
-		background-color: var(--hover-elem);
-	}
+    &:hover {
+      background-color: var(--hover-elem);
+    }
+  }
+
+  &__clear {
+    margin-left: auto;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+  }
 }
